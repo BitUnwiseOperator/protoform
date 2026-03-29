@@ -1,0 +1,83 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/protoform"]
+
+[project]
+name = "protoform"
+version = "0.0.0"
+description = "Progressive transformer architecture tutorial — base form, fork-ready"
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Topic :: Education",
+    "Intended Audience :: Education",
+    "Development Status :: 1 - Planning",
+]
+dependencies = [
+    "torch>=2.0.0",
+    "datasets>=4.0.0",
+    "plotly>=5.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/BitUnwiseOperator/protoform"
+Documentation = "https://bitunwiseoperator.github.io/protoform"
+
+[project.optional-dependencies]
+docs = [
+    "sphinx>=8.0.0",
+    "myst-nb>=1.0.0",
+    "sphinx-thebe>=0.3.0",
+    "jupyter>=1.0.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=6.0.0",
+    "pyright>=1.1.0",
+    "ruff>=0.15.6",
+    "pre-commit>=3.0.0",
+]
+
+
+[tool.pyright]
+typeCheckingMode = "strict"
+pythonVersion = "3.14"
+venvPath = "."
+venv = ".venv"
+include = ["src", "tests"]
+
+# ── Defer to Ruff for rules it already covers ────────────────────────────────
+# Each issue should be reported by exactly one tool. Ruff's F rules are
+# authoritative for all of the below — Pyright equivalents are silenced.
+reportUnusedImport = "none"      # Ruff F401
+reportUnusedVariable = "none"    # Ruff F841
+reportDuplicateImport = "none"   # Ruff F811
+reportUndefinedVariable = "error" # Pyright is more thorough than Ruff F821 here
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "F",   # pyflakes
+  "W",   # pycodestyle warnings
+  "UP",  # pyupgrade
+  "B",   # flake8-bugbear
+  "SIM", # flake8-simplify
+  "I",   # isort
+  "ANN", # annotation presence (Pyright checks correctness; Ruff checks existence)
+  "RUF", # Ruff-specific rules
+  "D",   # pydocstyle
+]
+
+[tool.ruff.lint.per-file-ignores]
+"docs/source/conf.py" = ["D100"]
+# Notebooks contain demo code — docstrings, line length, and strict zip are noise there
+"docs/source/notebooks/*.ipynb" = ["D", "E501", "B905", "ANN"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      dev:
+        patterns: ["ruff", "pyright", "pytest*", "pre-commit"]
+      docs:
+        patterns: ["sphinx*", "myst-nb", "sphinx-thebe"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

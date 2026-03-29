@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.DS_Store
+
+# Tool caches
+.ruff_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv
+
+# Sphinx build output
+docs/build/
+docs/.jupyter_cache/
+docs/jupyter_execute/
+
+# Local notes
+TODO.md
+
+# Raw data files
+/data/
