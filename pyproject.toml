@@ -34,11 +34,11 @@ docs = [
     "jupyter>=1.0.0",
 ]
 dev = [
-    "pytest>=8.0.0",
+    "pytest>=9.0.3",
     "pytest-cov>=6.0.0",
-    "pyright>=1.1.0",
-    "ruff>=0.15.6",
-    "pre-commit>=3.0.0",
+    "pyright>=1.1.409",
+    "ruff>=0.15.12",
+    "pre-commit>=4.6.0",
 ]
 
 
